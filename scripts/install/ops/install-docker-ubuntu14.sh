@@ -10,8 +10,10 @@ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58
 # for ubuntu 14.04 LTS
 echo 'deb https://apt.dockerproject.org/repo ubuntu-trusty main' | sudo tee /etc/apt/sources.list.d/docker.list
 
-sudo apt-get -y update
+# remove old repo
 sudo apt-get -y purge lxc-docker
+
+sudo apt-get -y update
 
 # recommended
 sudo apt-get -y install linux-image-extra-$(uname -r) linux-image-extra-virtual
