@@ -16,7 +16,11 @@ EOF
 sudo yum install -y logstash
 
 # how to start as a service ??
-#sudo initctl start logstash
+# sudo initctl start logstash
 
-#/usr/share/logstash/bin/logstash --path.settings /etc/logstash
-#nohup /usr/share/logstash/bin/logstash --path.settings /etc/logstash &
+# /usr/share/logstash/bin/logstash --path.settings /etc/logstash
+# nohup /usr/share/logstash/bin/logstash --path.settings /etc/logstash &
+
+
+# install plugins
+# /usr/share/logstash/bin/logstash-plugin install logstash-filter-aggregate
