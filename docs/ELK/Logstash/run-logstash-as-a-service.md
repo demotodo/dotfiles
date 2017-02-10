@@ -2,7 +2,7 @@
 
 1. modify options in `/etc/logstash/startup.options` of needed
 
-2. execute following command to register service entry (CentOS 6 - `sysv` or  CentOS 7 - `systemd`) 
+2. execute following command to register service entry (CentOS 6 - `sysv`/`upstart` or  CentOS 7 - `systemd`) 
 ```
     /usr/share/logstash/bin/system-install /etc/logstash/startup.options sysv
 ```
