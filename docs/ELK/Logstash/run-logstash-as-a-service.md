@@ -1,21 +1,63 @@
 ## Start as a service (CentOS)
 
-1. modify options in `/etc/logstash/startup.options` of needed
+1. modify options in `/etc/logstash/startup.options` if needed
+```
+LS_USER=root
+LS_GROUP=root
+```
 
 2. execute following command to register service entry (CentOS 6 - `sysv`/`upstart` or  CentOS 7 - `systemd`) 
 ```
-    /usr/share/logstash/bin/system-install /etc/logstash/startup.options sysv
+/usr/share/logstash/bin/system-install /etc/logstash/startup.options sysv
 ```
 
 3. execute following command 
 ```
-    chkconfig --add logstash
-    chkconfig --list | grep logstash
+chkconfig --add logstash
+chkconfig --list | grep logstash
 ```
 
 4. start the service
 ```
-    service start logstash
+service logstash start
+```
+
+### script
+
+**CentOS 6**
+
+```bash
+sed -i -e 's#-Xmx1g#-Xmx512m#' /etc/logstash/jvm.options
+sed -i -e 's#LS_USER=.*#LS_USER=root#' -e 's#LS_GROUP=.*#LS_GROUP=root#' /etc/logstash/startup.options
+
+rm -f /etc/init/logstash.conf
+
+## CentOS 6
+/usr/share/logstash/bin/system-install /etc/logstash/startup.options sysv
+chkconfig --add logstash
+chkconfig --list | grep logstash
+
+## to add customized logstash conf files
+
+#service logstash start
+#service logstash status
+#ps -ef | grep logstash
+```
+
+**CentOS 7**
+
+```bash
+sed -i -e 's#-Xmx1g#-Xmx512m#' /etc/logstash/jvm.options
+sed -i -e 's#LS_USER=.*#LS_USER=root#' -e 's#LS_GROUP=.*#LS_GROUP=root#' /etc/logstash/startup.options
+
+rm -f /etc/init/logstash.conf
+
+## CentOS 7
+/usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd
+
+## to add customized logstash conf files
+
+#systemctl start logstash
 ```
 
 
