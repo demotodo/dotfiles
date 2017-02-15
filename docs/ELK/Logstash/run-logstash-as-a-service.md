@@ -57,6 +57,7 @@ rm -f /etc/init/logstash.conf
 
 ## to add customized logstash conf files
 
+#systemctl enable logstash
 #systemctl start logstash
 ```
 
