@@ -54,11 +54,18 @@ rm -f /etc/init/logstash.conf
 
 ## CentOS 7
 /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd
+systemctl enable logstash
 
 ## to add customized logstash conf files
 
-#systemctl enable logstash
 #systemctl start logstash
+```
+
+### bg job
+
+```
+/usr/share/logstash/bin/logstash --path.settings /etc/logstash
+nohup /usr/share/logstash/bin/logstash --path.settings /etc/logstash &
 ```
 
 
